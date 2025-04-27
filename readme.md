@@ -90,13 +90,4 @@ Python_CIA3c/
 
 Contributions to this project are welcome. Feel free to fork the repository, make changes, and submit a pull request.
 
-## License
-
-[Specify your license here, e.g., MIT License, Apache 2.0, etc. If you don't have one yet, you can research open-source licenses and add one.]
-
 ---
-
-**Enjoy analyzing your portfolios!**
-```
-
-This `README.md` file provides a good overview of your application, instructions on how to get it running, how to use its features, and a basic outline of the project structure. Remember to replace `[Specify your license here...]` with the actual license you choose for your project. You can save this content in a file named `README.md` in the root directory of your project. When you push your project to GitHub, this file will be automatically displayed on the repository's main page.

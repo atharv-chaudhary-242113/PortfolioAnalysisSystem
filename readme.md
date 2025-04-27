@@ -1,274 +1,102 @@
-```markdown
 # Portfolio Analysis System
 
-
-A complete pipeline for fetching, analyzing, and visualizing global stock market data with IST timezone support.
+This is a Python-based desktop application for analyzing stock portfolios. It allows users to select predefined groups of stocks or enter custom tickers, specify a time period for analysis, and view basic portfolio statistics, correlations, and regression analysis. The application features a graphical user interface built with Tkinter.
 
 ## Features
 
-- **Data Collection**: Fetch historical prices for stocks and indices from Yahoo Finance
-- **Data Processing**: Clean and validate market data
-- **Storage**: Save to CSV and MySQL database
-- **Analysis**: Calculate returns, volatility, and risk metrics
-- **Visualization**: Generate price charts and performance summaries
-- **IST Support**: All timestamps in Asia/Kolkata timezone
+* **Ticker Group Selection:** Choose from predefined groups of stocks (e.g., US Tech, Indian Finance) or enter a custom list of tickers.
+* **Adjustable Analysis Period:** Specify the number of days to look back for historical stock data.
+* **Real-time Data Fetching:** Uses the `yfinance` library to download up-to-date stock data.
+* **Basic Portfolio Summary:** Provides key statistics for the selected portfolio.
+* **Correlation Analysis:** Calculates and displays the correlation matrix between the price movements of the selected stocks.
+* **Regression Analysis:** Performs linear regression of each stock's price against the first ticker in the selection to estimate Beta and Alpha.
+* **Data Export:** Allows exporting the analysis results to a CSV file.
+* **Report Options:** Provides a dialog to select which analysis components to include in the portfolio summary.
+* **Clear Output Console:** Option to clear the analysis output displayed in the application.
+* **Dark Theme:** Features a visually appealing dark theme for comfortable extended use.
 
-## Pipeline Flow
+## Prerequisites
 
-1. **Scrape** market data from Yahoo Finance
-2. **Clean** and validate the data
-3. **Store** in CSV format
-4. **Upload** to MySQL database
-5. **Analyze** portfolio performance
-6. **Visualize** results
+Before running the application, ensure you have the following installed:
+
+* **Python 3.9 or higher:** Download from [https://www.python.org/downloads/](https://www.python.org/downloads/)
+* **Required Python Libraries:** Install these using pip:
+    ```bash
+    pip install yfinance pandas tkinter ttkthemes matplotlib scipy
+    ```
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/portfolio-analysis.git
-   cd portfolio-analysis
-   ```
+1.  **Clone the Repository (if you downloaded the code from GitHub):**
+    ```bash
+    git clone <repository-url>
+    cd <repository-directory>
+    ```
+    Replace `<repository-url>` with the URL of the GitHub repository and `<repository-directory>` with the name of the cloned folder.
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+2.  **Navigate to the Project Directory (if you downloaded the code directly):**
+    ```bash
+    cd <project-directory>
+    ```
+    Replace `<project-directory>` with the path to the main project folder.
 
-3. Set up MySQL database:
-   ```sql
-   CREATE DATABASE portfolio_db;
-   ```
+## Running the Application
 
-## Configuration
+To start the Portfolio Analysis System, run the `gui.py` file from your terminal:
 
-Edit the database credentials in `main.py`:
-```python
-DB_CONFIG = {
-    "host": "localhost",
-    "user": "root",
-    "password": "yourpassword",
-    "database": "portfolio_db"
-}
-```
+```bash
+python graphics/gui.py
+````
+
+This will launch the main application window.
 
 ## Usage
 
-Run the main pipeline:
-```bash
-python main.py
-```
+1.  **Select Ticker Group:** Use the dropdown menu to choose a predefined group of stocks or select "Custom".
+2.  **Enter Custom Tickers (if "Custom" is selected):** In the "Custom Tickers" field, enter the stock tickers you want to analyze, separated by commas (e.g., AAPL,MSFT,GOOGL).
+3.  **Specify Analysis Period:** Enter the number of days you want to analyze in the "Analysis Period (days)" field. You can also use the up and down arrow buttons to adjust the number of days.
+4.  **Run Analysis:** Click the "Run Analysis" button to fetch the stock data and perform the initial analysis. The output will be displayed in the "Analysis Output" console.
+5.  **Report Options:** Click the "Report Options" button to open a dialog where you can select which components (Basic Statistics, Correlation, Regression) you want to include in the portfolio summary.
+6.  **Generate Summary:** After selecting the report options, click "Generate Summary" in the dialog to view the portfolio analysis based on your choices.
+7.  **Export Results:** Click the "Export Results" button to save the raw analysis data to a CSV file. You will be prompted to choose a file name and location.
+8.  **Clear Console:** Click the "Clear Console" button to clear the text in the "Analysis Output" area.
+9.  **Exit:** Click the "Exit" button to close the application.
 
-### Command Line Interface
-
-```
-🕒 2025-04-06 18:30:45 IST
-🚀 Starting Portfolio Analysis Pipeline
-
-Supported Formats:
-Indices: ^GSPC (S&P 500), ^IXIC (NASDAQ)
-US Stocks: AAPL, TSLA
-International: 7203.T (Toyota), HSBA.L (HSBC)
-
-Enter symbols (comma separated) or press Enter for default: 
-```
-
-## File Structure
+## Directory Structure
 
 ```
-portfolio-analysis/
+Python_CIA3c/
 ├── analysis/
 │   └── portfolio_manager.py
-├── database/
-│   └── db_handler.py
-├── scraper/
-│   └── scraper.py
-├── spreadsheets/
-│   ├── csv_handler.py
-│   └── data_cleaner.py
-├── visuals/
-│   └── visuals.py
+├── assets/
+│   └── themes/
+│       └── forest-dark.tcl
+├── graphics/
+│   ├── buttons/
+│   │   ├── export_results_button.py
+│   │   └── report_options_button.py
+│   ├── portfolio_summary/
+│   │   └── portfolio_summary_generator.py
+│   ├── report_options_dialog.py
+│   └── gui.py
 ├── main.py
-├── README.md
-└── requirements.txt
+├── spreadsheets/
+│   └── csv_handler.py
+└── visuals/
+    └── visuals.py
 ```
 
-## Modules
+## Contributing
 
-1. **Scraper**: Fetches market data from Yahoo Finance
-2. **Data Cleaner**: Validates and prepares data for analysis
-3. **CSV Handler**: Manages CSV file operations
-4. **DB Handler**: Handles MySQL database operations
-5. **Portfolio Manager**: Calculates performance metrics
-6. **Visuals**: Generates charts and tables
+Contributions to this project are welcome. Feel free to fork the repository, make changes, and submit a pull request.
 
-## Requirements
+## License
 
-- Python 3.8+
-- Packages:
-  - yfinance
-  - pandas
-  - numpy
-  - matplotlib
-  - python-dotenv
-  - mysql-connector-python
-  - pytz
-  - tabulate
+[Specify your license here, e.g., MIT License, Apache 2.0, etc. If you don't have one yet, you can research open-source licenses and add one.]
 
+---
 
-```bash
-import tkinter as tk
-from tkinter import ttk, messagebox, filedialog
-from datetime import datetime
-import pytz
-import matplotlib
+**Enjoy analyzing your portfolios!**
+```
 
-matplotlib.use('TkAgg')
-# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# import matplotlib.pyplot as plt
-# import pandas as pd
-from main import run_pipeline
-
-
-class PortfolioApp:
-    def __init__(self, root):
-        self.root = root
-        self.root.title("Portfolio Analysis System")
-        self.root.geometry("900x700")
-        self.style = ttk.Style()
-        self.configure_styles()
-        self.create_widgets()
-        self.chart_windows = []
-
-    def configure_styles(self):
-        self.style.configure('TFrame', background='#f0f0f0')
-        self.style.configure('TLabel', background='#f0f0f0', font=('Arial', 10))
-        self.style.configure('TButton', font=('Arial', 10))
-        self.style.configure('Header.TLabel', font=('Arial', 12, 'bold'))
-        self.style.configure('Console.TFrame', background='white')
-
-    def create_widgets(self):
-        main_frame = ttk.Frame(self.root, padding="10")
-        main_frame.pack(fill=tk.BOTH, expand=True)
-
-        # Header
-        ttk.Label(main_frame, text="Portfolio Analysis Dashboard",
-                  style='Header.TLabel').grid(row=0, column=0, columnspan=2, pady=10)
-
-        # Configuration Section
-        config_frame = ttk.LabelFrame(main_frame, text="Analysis Configuration", padding=10)
-        config_frame.grid(row=1, column=0, columnspan=2, sticky=tk.EW, pady=5)
-
-        # Ticker Selection
-        ttk.Label(config_frame, text="Select Ticker Group:").grid(row=0, column=0, sticky=tk.W)
-        self.group_var = tk.StringVar()
-        groups = ["S&P 500 (Top 30)", "NASDAQ 100 (Top 30)", "Nifty 50 (India)",
-                  "Global Blue Chips", "Custom"]
-        self.group_combo = ttk.Combobox(config_frame, textvariable=self.group_var,
-                                        values=groups, state="readonly", width=25)
-        self.group_combo.grid(row=0, column=1, sticky=tk.W, padx=5, pady=5)
-        self.group_combo.current(0)
-
-        # Custom Ticker Entry
-        ttk.Label(config_frame, text="Custom Tickers (comma separated):").grid(row=1, column=0, sticky=tk.W)
-        self.custom_entry = ttk.Entry(config_frame, width=40)
-        self.custom_entry.grid(row=1, column=1, sticky=tk.W, padx=5, pady=5)
-        self.custom_entry.insert(0, "AAPL,MSFT,GOOGL")
-
-        # Analysis Period
-        ttk.Label(config_frame, text="Analysis Period (days):").grid(row=2, column=0, sticky=tk.W)
-        self.days_var = tk.IntVar(value=100)
-        ttk.Spinbox(config_frame, from_=1, to=365, textvariable=self.days_var,
-                    width=5).grid(row=2, column=1, sticky=tk.W, padx=5, pady=5)
-
-        # Output Console
-        console_frame = ttk.LabelFrame(main_frame, text="Analysis Output", padding=10)
-        console_frame.grid(row=2, column=0, columnspan=2, sticky=tk.NSEW, pady=5)
-
-        self.console = tk.Text(console_frame, height=15, width=85, state='disabled',
-                               font=('Consolas', 9), wrap=tk.WORD)
-        self.console.pack(fill=tk.BOTH, expand=True)
-
-        scrollbar = ttk.Scrollbar(console_frame, command=self.console.yview)
-        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
-        self.console['yscrollcommand'] = scrollbar.set
-
-        # Buttons
-        btn_frame = ttk.Frame(main_frame)
-        btn_frame.grid(row=3, column=0, columnspan=2, pady=10)
-
-        ttk.Button(btn_frame, text="Run Analysis", command=self.run_analysis).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Export Results", command=self.export_results).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Clear Console", command=self.clear_console).pack(side=tk.LEFT, padx=5)
-        ttk.Button(btn_frame, text="Exit", command=self.cleanup).pack(side=tk.RIGHT, padx=5)
-
-        # Configure grid weights
-        main_frame.columnconfigure(0, weight=1)
-        main_frame.rowconfigure(2, weight=1)
-
-    def run_analysis(self):
-        group = self.group_var.get()
-        custom_tickers = [t.strip().upper() for t in self.custom_entry.get().split(",") if t.strip()]
-        days_back = self.days_var.get()
-
-        if group == "Custom" and not custom_tickers:
-            messagebox.showerror("Error", "Please enter custom tickers")
-            return
-
-        self.log_output(
-            f"Starting analysis at {datetime.now(pytz.timezone('Asia/Kolkata')).strftime('%Y-%m-%d %H:%M:%S')}")
-        self.log_output(f"Parameters: Group={group}, Days={days_back}")
-
-        try:
-            if group == "Custom":
-                tickers = custom_tickers
-            else:
-                from main import get_ticker_groups
-                tickers = get_ticker_groups()[group]
-
-            self.log_output("\nExecuting pipeline...")
-            run_pipeline(tickers, days_back, self.log_output, self.root)
-            self.log_output("\nAnalysis completed successfully!")
-
-        except Exception as e:
-            self.log_output(f"\nError: {str(e)}")
-            messagebox.showerror("Error", f"Analysis failed: {str(e)}")
-
-    def export_results(self):
-        try:
-            file_path = filedialog.asksaveasfilename(
-                defaultextension=".csv",
-                filetypes=[("CSV files", "*.csv"), ("All files", "*.*")],
-                title="Save Analysis Results"
-            )
-            if file_path:
-                # Add your export logic here
-                messagebox.showinfo("Success", f"Results exported to {file_path}")
-        except Exception as e:
-            messagebox.showerror("Export Error", str(e))
-
-    def clear_console(self):
-        self.console.config(state='normal')
-        self.console.delete(1.0, tk.END)
-        self.console.config(state='disabled')
-
-    def log_output(self, message):
-        self.console.config(state='normal')
-        self.console.insert(tk.END, message + "\n")
-        self.console.see(tk.END)
-        self.console.config(state='disabled')
-        self.root.update()
-
-    def cleanup(self):
-        for window in self.chart_windows:
-            try:
-                window.destroy()
-            except:
-                pass
-        self.root.quit()
-
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = PortfolioApp(root)
-    root.mainloop()```
+This `README.md` file provides a good overview of your application, instructions on how to get it running, how to use its features, and a basic outline of the project structure. Remember to replace `[Specify your license here...]` with the actual license you choose for your project. You can save this content in a file named `README.md` in the root directory of your project. When you push your project to GitHub, this file will be automatically displayed on the repository's main page.

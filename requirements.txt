@@ -1,0 +1,9 @@
+yfinance
+pandas
+mysql-connector-python
+numpy
+pytz
+matplotlib
+scipy
+tabulate
+seaborn
